@@ -6,7 +6,6 @@ import { observer } from "mobx-react";
 import Loading from "./Loading";
 import SearchBar from "./SearchBar";
 import BookTable from "./BookTable";
-
 // Stores
 import bookStore from "./stores/BookStore";
 

@@ -12,6 +12,23 @@ class BookStore {
     this.loading = true;
   }
 
+  addBook(newBook, authorID) {
+    const BookObject = { ...newBook, authors: [authorID] };
+    console.log(BookObject);
+    return instance
+      .post("/api/books/", BookObject)
+      .then(res => res.data)
+      .then(book => {
+        this.books.push(book);
+        this.statusMessage = "Success";
+        console.log(this.books);
+      })
+      .catch(error => {
+        this.statusMessage = "Invalid Fields";
+        console.log(error.response);
+      });
+  }
+
   fetchBooks() {
     return instance
       .get("https://the-index-api.herokuapp.com/api/books/")

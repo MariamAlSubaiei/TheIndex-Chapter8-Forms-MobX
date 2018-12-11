@@ -10,6 +10,21 @@ class AuthorStore {
     this.authors = [];
     this.loading = true;
     this.query = "";
+    this.statusMessage = "";
+  }
+  addAuthor(newAuthor) {
+    return instance
+      .post("/api/authors/", newAuthor)
+      .then(res => res.data)
+      .then(author => {
+        this.authors.push(author);
+        this.statusMessage = "Success";
+        console.log(this.statusMessage);
+      })
+      .catch(error => {
+        this.statusMessage = "Invalid Fields";
+        console.log(error.response);
+      });
   }
 
   fetchAuthors() {
